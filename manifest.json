@@ -1,20 +1,48 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Revisionista",
-  "description" : "Revisionista Browser Extension",
+  "description": "Revisionista Browser Extension",
   "version": "1.0.8",
   "permissions": [
     "tabs",
     "activeTab",
     "contextMenus",
-    "<all_urls>"
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "browser_action": {
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "vendor/browser-polyfill.js",
+        "vendor/Readability-readerable.js",
+        "content_scripts/content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "et-book/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
     "default_icon": {
       "16": "icons/icon16.png",
       "19": "icons/icon19.png",
@@ -24,27 +52,5 @@
       "128": "icons/icon128.png"
     }
   },
-  "background": {
-    "scripts": [
-      "vendor/browser-polyfill.js",
-      "vendor/executeScript-helper.js",
-      "vendor/fetch-retry-browserified.js",
-      "vendor/tldjs-browserified.js",
-      "vendor/Readability.js",
-      "background_scripts/background.js"
-    ]
-  },
-  "content_scripts": [{
-    "matches": [
-      "<all_urls>"
-    ],
-    "js": [
-      "vendor/browser-polyfill.js",
-      "vendor/Readability-readerable.js",
-      "content_scripts/content.js"
-    ]
-  }],
-  "web_accessible_resources": [
-    "et-book/*"
-  ]
+  "content_security_policy": {}
 }
