@@ -9,7 +9,7 @@
     "eslint": "^7.9.0",
     "fetch-retry": "^2.2.3",
     "tldjs": "^2.3.1",
-    "webextension-polyfill": "^0.6.0"
+    "webextension-polyfill": "^0.10.0"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
     "news",
     "revisions"
   ],
-  "homepage": "https://revisionista.pt"
+  "homepage": "https://revisionista.pt",
+  "dependencies": {
+    "dom-parser": "^1.1.5"
+  }
 }
